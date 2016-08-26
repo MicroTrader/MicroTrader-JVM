@@ -1,15 +1,15 @@
 /*
- * Microtrader is available under either the terms of the Apache License, Version 2.0 (ASF 2.0)
+ * ${PROJECT_NAME} is available under either the terms of the Apache License, Version 2.0 (ASF 2.0)
  * the Academic Free License Version 3.0, (AFL 3.0) or MIT License (MIT). As a recipient of
- * Microtrader, you may choose which license to receive this code or content under
+ * ${PROJECT_NAME}, you may choose which license to receive this code or content under
  * (except as noted in per-module LICENSE files). Some modules may not be the copyright
  * of the Suminda Sirinath Salpitikorala Dharmasena and Project Contributors.
  * These modules contain explicit declarations of copyright in both the LICENSE files
  * in the directories in which they reside and in the code or content itself.
  *
  * No external contributions are allowed under licenses which are fundamentally
- * incompatible with the ASL 2.0, AFL 3.0 and MIT that Microtrader is distributed under.
- * By contributing to this project by means of including but not limited to patches,
+ * incompatible with the ASL 2.0, AFL 3.0 and MIT that ${PROJECT_NAME} is distributed under.
+ * By contributing to ${PROJECT_NAME} by means of including but not limited to patches,
  * pull requests, code submissions, issues, bug report, code snippets, discussions,
  * email message, chat messages such content will be licensed under the terms of
  * ASL 2.0, AFL 3.0 and MIT where the recipients are free to choose under which license
@@ -17,7 +17,7 @@
  *
  * ______________________________________________________________________________________
  *
- * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and Project Contributors
+ * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
  *
  * ______________________________________________________________________________________
  *
- * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and Project Contributors
+ * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
  *
  * Licensed under the Academic Free License, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@
  * ______________________________________________________________________________________
  *
  * The MIT License (MIT)
- * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and Project Contributors
+ * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this
  * software and associated documentation files (the "Software"), to deal in the Software
@@ -70,36 +70,29 @@
  * THE SOFTWARE.
  */
 
-lazy val commonSettings = Seq(
-  organization := "com.sakrio",
-  scalaVersion := "0.1-SNAPSHOT",
-  scalaOrganization := "ch.epfl.lamp",
-  scalacOptions ++= Seq("-language:Scala2"),
-  scalaBinaryVersion := "2.11",
-  autoScalaLibrary := false
-)
+group 'com.sakrio'
+version '0.1.0-SNAPSHOT'
 
-lazy val root = (project in file(".")).
-  settings(commonSettings: _*).
-  settings(
-    name := "MicroTrader",
-    description := "Minimalist trading library",
-    version := "0.1.0",
-    resolvers ++= Seq(
-      Resolver.mavenLocal,
-      Resolver.typesafeRepo("releases"),
-      Resolver.typesafeRepo("snapshots"),
-      Resolver.typesafeIvyRepo("releases"),
-      Resolver.typesafeIvyRepo("snapshots"),
-      Resolver.sonatypeRepo("public"),
-      Resolver.sonatypeRepo("releases"),
-      Resolver.sonatypeRepo("snapshots"),
-      Resolver.sbtPluginRepo("releases"),
-      Resolver.sbtPluginRepo("snapshots"),
-      Resolver.jcenterRepo
-    ),
-    libraryDependencies ++= Seq(
-      "org.scala-lang" % "scala-library" % "2.11.5"
-    ),
-    scalaCompilerBridgeSource := ("ch.epfl.lamp" % "dotty-bridge" % "0.1.1-SNAPSHOT" % "component").sources()
-  )
+defaultTasks 'clean', 'build', 'install'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.0'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven { url "https://jitpack.io" }
+}
+
+dependencies {
+    compile 'org.jctools:jctools-core:1.2.1'
+    compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

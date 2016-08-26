@@ -70,4 +70,5 @@
  * THE SOFTWARE.
  */
 
+rootProject.name = 'MicroTrader'
 
