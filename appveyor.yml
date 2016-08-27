@@ -4,10 +4,10 @@ build:
   verbosity: detailed
 
 build_script:
-  - gradlew.bat assemble --info --no-daemon
+  - gradlew.bat assemble --info --no-daemon --stacktrace
 
 test_script:
-  - gradlew.bat check --info --no-daemon
+  - gradlew.bat check --info --no-daemon --stacktrace
 
 cache:
   - .gradle
@@ -27,8 +27,3 @@ platform:
 
 matrix:
   fast_finish: true
-
-notifications:
-  - provider: Email
-    to:
-      - commits@microtrader.groups.io

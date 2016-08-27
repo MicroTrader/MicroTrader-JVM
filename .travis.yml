@@ -15,11 +15,7 @@ before_install:
   - pip install --user codecov
 
 script:
-  - ./gradlew build
-
-notifications:
-  email:
-    - commits@microtrader.groups.io
+  - ./gradlew build  --info --no-daemon --stacktrace
 
 after_success:
   - codecov
