@@ -1,0 +1,21 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+os:
+  - linux
+  - osx
+
+before_install:
+  - pip install --user codecov
+
+script:
+  - ./gradlew build
+
+notifications:
+  email:
+    - commits@microtrader.groups.io
+
+after_success:
+  - codecov

@@ -1,0 +1,11 @@
+machine:
+  java:
+    version: openjdk8
+
+dependencies:
+  override:
+    - gradle dependencies
+
+test:
+  override:
+    - gradle test
