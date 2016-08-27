@@ -15,7 +15,7 @@ before_install:
   - pip install --user codecov
 
 script:
-  - ./gradlew build  --info --no-daemon --stacktrace
+  - ./gradlew build --stacktrace --info --debug --no-daemon
 
 after_success:
   - codecov
