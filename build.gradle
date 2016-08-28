@@ -2,10 +2,11 @@
  * ${PROJECT_NAME} is available under either the terms of the Apache License, Version 2.0 (ASF 2.0)
  * the Academic Free License Version 3.0, (AFL 3.0) or MIT License (MIT). As a recipient of
  * ${PROJECT_NAME}, you may choose which license to receive this code or content under
- * (except as noted in per-module LICENSE files). Some modules may not be the copyright
- * of the Suminda Sirinath Salpitikorala Dharmasena and Project Contributors.
- * These modules contain explicit declarations of copyright in both the LICENSE files
- * in the directories in which they reside and in the code or content itself.
+ * (except as noted in per-module HEADER, COPYRIGHT, COPYING, and / or LICENSE files). Some modules may not
+ * be the copyright of the Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors.
+ * These modules contain explicit declarations of copyright in both the
+ * HEADER, COPYRIGHT, COPYING, and / or LICENSE files in the directories in which they reside and in
+ * the code or content itself.
  *
  * No external contributions are allowed under licenses which are fundamentally
  * incompatible with the ASL 2.0, AFL 3.0 and MIT that ${PROJECT_NAME} is distributed under.
@@ -15,7 +16,7 @@
  * ASL 2.0, AFL 3.0 and MIT where the recipients are free to choose under which license
  * code or content is received under.
  *
- * ______________________________________________________________________________________
+ * _______________________________________________________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
  *
@@ -31,7 +32,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ______________________________________________________________________________________
+ * _______________________________________________________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
  *
@@ -47,7 +48,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ______________________________________________________________________________________
+ * _______________________________________________________________________________________________________________________
  *
  * The MIT License (MIT)
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and ${PROJECT_NAME} Contributors
@@ -81,7 +82,7 @@ task wrapper(type: Wrapper) {
 }
 
 apply plugin: 'java'
-apply plugin: "jacoco"
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -89,11 +90,14 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
+    maven { url 'https://oss.jfrog.org/libs-snapshot' }
 }
 
 dependencies {
-    compile 'org.jctools:jctools-core:1.2.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.0.0-RC1'
     compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
+
+    compile 'com.github.MicroTrader:ObjPool:-SNAPSHOT'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

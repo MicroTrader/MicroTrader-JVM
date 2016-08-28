@@ -71,5 +71,28 @@
  * THE SOFTWARE.
  */
 
-rootProject.name = 'MicroTrader'
+package com.sakrio.microtrader;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+
+/**
+ * Created by sirinath on 27/08/2016.
+ */
+public class Portfolio implements Observer<PortfolioTransaction> {
+    @Override
+    public void onSubscribe(Disposable d) {
+    }
+
+    @Override
+    public void onNext(PortfolioTransaction value) {
+    }
+
+    @Override
+    public void onError(Throwable e) {
+    }
+
+    @Override
+    public void onComplete() {
+    }
+}

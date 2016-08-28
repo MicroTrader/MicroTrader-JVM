@@ -71,5 +71,10 @@
  * THE SOFTWARE.
  */
 
-rootProject.name = 'MicroTrader'
+package com.sakrio.microtrader;
 
+/**
+ * Created by HP on 27/08/2016.
+ */
+public class PortfolioTransaction {
+}
