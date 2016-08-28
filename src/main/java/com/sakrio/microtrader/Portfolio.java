@@ -6,7 +6,7 @@
  *
  * ${PROJECT_NAME} (the / this "Project") is available under
  * either the terms of
- *  - the Apache License, Version 2.0 (ASF 2.0),
+ *  - the Apache License, Version 2.0 (ASF 2.0), or
  *  - the Academic Free License, Version 3.0 (AFL 3.0), or
  *  - the MIT License (MIT), collectively referred as the "Project Licenses".
  * As a recipient of this Project, you may choose which license to receive
