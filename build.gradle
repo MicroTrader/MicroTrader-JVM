@@ -91,6 +91,13 @@
  * _______________________________________________________________________________
  */
 
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'net.saliman.cobertura' version '2.3.1'
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
 group 'com.sakrio'
 version '0.1.0-SNAPSHOT'
 
@@ -101,23 +108,12 @@ task wrapper(type: Wrapper) {
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
-apply plugin: 'java'
-apply plugin: 'jacoco'
-
-plugins {
-    id 'net.saliman.cobertura' version '2.3.1'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
-}
-
-id 'net.saliman.cobertura' version '2.3.1'
-
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
-    maven { url 'https://oss.jfrog.org/libs-snapshot' }
 }
 
 dependencies {

@@ -24,4 +24,8 @@
     <orderEntry type="library" name="Gradle: org.apache.commons:commons-math3:3.2" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="MicroTrader_main" />
+  <component name="sonarModuleSettings">
+    <option name="localAnalysisScripName" value="&lt;PROJECT&gt;" />
+    <option name="serverName" value="&lt;PROJECT&gt;" />
+  </component>
 </module>
