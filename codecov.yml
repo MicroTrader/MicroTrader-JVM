@@ -1,6 +1,6 @@
 codecov:
   branch: master
-  bot: null
+  bot: sirinath
   ci: null
   strict_yaml_branch: null
   max_report_age: null

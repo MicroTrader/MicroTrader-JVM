@@ -4,10 +4,13 @@ build:
   verbosity: detailed
 
 build_script:
-  - gradlew.bat assemble --stacktrace --info --debug --no-daemon
+  - gradlew.bat assemble --stacktrace --info --debug
 
 test_script:
-  - gradlew.bat check --stacktrace --info --debug --no-daemon
+  - gradlew.bat check --stacktrace --info --debug
+
+on_finish:
+  - gradlew.bat --stop
 
 cache:
   - .gradle
