@@ -73,8 +73,48 @@
 
 package com.sakrio.microtrader;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.subjects.PublishSubject;
+
 /**
- * Created by HP on 27/08/2016.
+ * Created by sirinath on 28/08/2016.
  */
-public class PortfolioTransaction {
+public class Updater<T> implements Observer {
+    private final PublishSubject<T> in = PublishSubject.create();
+
+    protected Updater() {
+        in.subscribe(this);
+    }
+
+    public Observable<T> getIn() {
+        return new Observable<T>() {
+            @Override
+            protected void subscribeActual(Observer<? super T> observer) {
+
+            }
+        };
+    }
+
+    @Override
+    public void onSubscribe(Disposable d) {
+
+    }
+
+    @Override
+    public void onNext(Object value) {
+
+    }
+
+    @Override
+    public void onError(Throwable e) {
+
+    }
+
+    @Override
+    public void onComplete() {
+
+    }
 }
+

@@ -11,10 +11,10 @@
  * No external contributions are allowed under licenses which are fundamentally
  * incompatible with the ASL 2.0, AFL 3.0 and MIT that ${PROJECT_NAME} is distributed under.
  * By contributing to ${PROJECT_NAME} by means of including but not limited to patches,
- * pull requests, code submissions, issues, bug report, code snippets, discussions,
- * email message, chat messages such content will be licensed under the terms of
- * ASL 2.0, AFL 3.0 and MIT where the recipients are free to choose under which license
- * code or content is received under.
+ * pull requests, code submissions, issues, bug report, documentation, tutorials, wiki pages and edits,
+ * code snippets, discussions, email message, chat messages, presentations,
+ * and other submissions and contributions will be licensed under the terms of ASL 2.0, AFL 3.0 and MIT
+ * where the recipients are free to choose under which license code or content is received under.
  *
  * _______________________________________________________________________________________________________________________
  *
@@ -73,26 +73,8 @@
 
 package com.sakrio.microtrader;
 
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by sirinath on 27/08/2016.
  */
-public class Portfolio implements Observer<PortfolioTransaction> {
-    @Override
-    public void onSubscribe(Disposable d) {
-    }
-
-    @Override
-    public void onNext(PortfolioTransaction value) {
-    }
-
-    @Override
-    public void onError(Throwable e) {
-    }
-
-    @Override
-    public void onComplete() {
-    }
+public class Portfolio {
 }
