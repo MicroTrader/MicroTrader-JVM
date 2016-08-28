@@ -10,10 +10,10 @@
  *  - the Academic Free License, Version 3.0 (AFL 3.0), or
  *  - the MIT License (MIT), collectively referred as the "Project Licenses".
  * As a recipient of this Project, you may choose which license to receive
- * these artifacts under (except as noted in explicit declarations and / or
- * notices of intellectual property rights). Some artifacts may not be the
- * intellectual property of Suminda Sirinath Salpitikorala Dharmasena and
- * Project Contributors. These are noted in explicit declarations and / or
+ * these artifacts under (except as noted in other explicit declarations
+ * and / or notices of intellectual property rights). Some artifacts may not
+ * be the intellectual property of Suminda Sirinath Salpitikorala Dharmasena
+ * and Project Contributors. These are noted in explicit declarations and / or
  * notices of intellectual property rights.
  *
  * No external contributions are allowed under licenses which are
