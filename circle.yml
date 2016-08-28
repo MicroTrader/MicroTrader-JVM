@@ -4,8 +4,8 @@ machine:
 
 dependencies:
   override:
-    - gradle dependencies
+    - gradle dependencies --stacktrace --info --debug --no-daemon
 
 test:
   override:
-    - gradle test
+    - gradle test --stacktrace --info --debug --no-daemon

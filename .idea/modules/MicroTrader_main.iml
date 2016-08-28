@@ -9,10 +9,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxjava:2.0.0-RC1" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ObjectLayout:ObjectLayout:-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: com.github.MicroTrader:ObjPool:-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Gradle: org.reactivestreams:reactive-streams:1.0.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ObjectLayout.ObjectLayout:ObjectLayout:-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ObjectLayout.ObjectLayout:ObjectLayout-benchmarks:-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: com.github.ObjectLayout.ObjectLayout:ObjectLayout-examples:-SNAPSHOT" level="project" />
