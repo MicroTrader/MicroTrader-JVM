@@ -104,6 +104,10 @@ task wrapper(type: Wrapper) {
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
+plugins {
+    id 'com.github.kt3k.coveralls' version '2.6.3'
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
@@ -124,5 +128,6 @@ dependencies {
 jacocoTestReport {
     reports {
         xml.enabled true
+        html.enabled = true
     }
 }
