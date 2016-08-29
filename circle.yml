@@ -12,12 +12,12 @@ dependencies:
   pre:
     - chmod +x gradlew
   override:
-    - gradle dependencies --stacktrace --info --debug
+    - ./gradlew dependencies --stacktrace --info --debug
 
 test:
   pre:
     - chmod +x gradlew
   override:
-    - gradle test --stacktrace --info --debug
+    - ./gradlew test --stacktrace --info --debug
   post:
-    - ./gradle --stop
+    - ./gradlew --stop
