@@ -14,12 +14,13 @@ env:
 
 before_install:
   - pip install --user codecov
+  - chmod +x gradlew
+  - chmod +x codecov
 
 script:
   - ./gradlew build --stacktrace --info --debug
 
 after_success:
   - ./gradlew jacocoTestReport coveralls --stacktrace --info --debug
-  - ./gradlew cobertura coveralls --stacktrace --info --debug
   - codecov
   - ./gradlew --stop

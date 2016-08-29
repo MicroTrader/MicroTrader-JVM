@@ -3,9 +3,21 @@ machine:
     version: openjdk8
 
 dependencies:
+  cache_directories:
+    - ~/.m2
+    - ~/.ivy2
+    - ~/.gradle
+    - .gradle
+    - gradle
+  pre:
+    - chmod +x gradlew
   override:
-    - gradle dependencies --stacktrace --info --debug --no-daemon
+    - gradle dependencies --stacktrace --info --debug
 
 test:
+  pre:
+    - chmod +x gradlew
   override:
-    - gradle test --stacktrace --info --debug --no-daemon
+    - gradle test --stacktrace --info --debug
+  post:
+    - ./gradle --stop
