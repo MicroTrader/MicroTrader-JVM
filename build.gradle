@@ -100,7 +100,7 @@ plugins {
 group 'com.sakrio'
 version '0.1.0-SNAPSHOT'
 
-defaultTasks 'clean', 'build', 'install'
+defaultTasks 'clean', 'build', 'jar'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.0'
