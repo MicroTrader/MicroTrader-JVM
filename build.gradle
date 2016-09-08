@@ -109,12 +109,10 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.6.3'
 }
 
-apply plugin: 'maven-publish'
-
 group 'com.sakrio'
 version '0.1.0-SNAPSHOT'
 
-defaultTasks 'clean', 'build', 'jar', 'publishToMavenLocal'
+defaultTasks 'clean', 'build', 'jar'
 
 task wrapper(type: Wrapper) {
     gradleVersion = '3.0'
