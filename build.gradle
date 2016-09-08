@@ -113,7 +113,7 @@ apply plugin: 'maven'
 
 defaultTasks 'clean', 'build', 'jar', 'install'
 
-group 'com.sakrio'
+group 'com.github.MicroTrader'
 version '0.1.0-SNAPSHOT'
 
 task wrapper(type: Wrapper) {
