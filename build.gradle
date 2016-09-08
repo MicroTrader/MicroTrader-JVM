@@ -125,10 +125,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    jcenter()
-    mavenCentral()
     mavenLocal()
     ivy { url System.getProperty("user.home") + '/.ivy2' }
+    jcenter()
+    mavenCentral()
     maven { url "https://jitpack.io" }
 }
 
