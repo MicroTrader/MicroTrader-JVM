@@ -210,11 +210,6 @@ publishing {
             from components.java
         }
     }
-    publications {
-        ivyJava(IvyPublication) {
-            from components.java
-        }
-    }
 }
 
 bintray {
@@ -256,29 +251,6 @@ bintray {
                 close = '1'
             }
         }
-    }
-}
-
-artifactory {
-    contextUrl = 'http://localhost:8081/artifactory'
-    publish {
-        repository {
-            if (project.version.endsWith('-SNAPSHOT'))
-                repoKey = 'libs-snapshot-local'
-            else
-                repoKey = 'libs-release-local'
-
-            username = artifactory_user
-            password = artifactory_password
-        }
-        defaults {
-            publications('mavenJava', 'ivyJava')
-            publishArtifacts = true
-            publishPom = true
-        }
-    }
-    resolve {
-        repoKey = 'jcenter'
     }
 }
 
