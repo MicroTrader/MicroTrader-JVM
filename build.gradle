@@ -262,6 +262,7 @@ artifacts {
 }
 
 signing {
+    required { gradle.taskGraph.hasTask("uploadArchives") || gradle.taskGraph.hasTask("bintrayUpload") }
     sign configurations.archives
 }
 
