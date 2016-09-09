@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader_main.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader_main.iml" group="MicroTrader" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader_test.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader_test.iml" group="MicroTrader" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader-JVM.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader-JVM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader-JVM_main.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader-JVM_main.iml" group="MicroTrader-JVM" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MicroTrader-JVM_test.iml" filepath="$PROJECT_DIR$/.idea/modules/MicroTrader-JVM_test.iml" group="MicroTrader-JVM" />
     </modules>
   </component>
 </project>

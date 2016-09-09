@@ -19,6 +19,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="MicroTrader-JVM_main" target="1.8" />
+      <module name="MicroTrader-JVM_test" target="1.8" />
       <module name="MicroTrader_main" target="1.8" />
       <module name="MicroTrader_test" target="1.8" />
     </bytecodeTargetLevel>
