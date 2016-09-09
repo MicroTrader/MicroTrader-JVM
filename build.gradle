@@ -2,9 +2,9 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
- * ${PROJECT_NAME}, is a collection of works and / or artifacts submitted
+ * MicroTrader, is a collection of works and / or artifacts submitted
  * and / or contributed by multiple authors ("Project Contributors"),
  * collectively creating a larger work(s) and / or artifact(s) (the / this
  * "Project"). This project is licensed under the terms of either:
@@ -45,7 +45,7 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Licensed under the Academic Free License, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@
  *
  * The MIT License (MIT)
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -103,13 +103,34 @@
  * _______________________________________________________________________________
  */
 
+buildscript {
+    repositories {
+        mavenLocal()
+        ivy { url System.getProperty("user.home") + '/.ivy2' }
+        maven { url "http://dl.bintray.com/sirinath/MicroTrader" }
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    configurations.all {
+        resolutionStrategy {
+            cacheDynamicVersionsFor 0, 'seconds'
+            cacheChangingModulesFor 0, 'seconds'
+        }
+    }
+}
+
 plugins {
     id 'java'
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'com.jfrog.bintray' version '1.7'
+    id 'com.jfrog.artifactory' version '4.4.0'
 }
 
 apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'ivy-publish'
 
 defaultTasks 'clean', 'build', 'jar', 'install'
 
@@ -127,6 +148,7 @@ targetCompatibility = 1.8
 repositories {
     mavenLocal()
     ivy { url System.getProperty("user.home") + '/.ivy2' }
+    maven { url "http://dl.bintray.com/sirinath/MicroTrader" }
     jcenter()
     mavenCentral()
     maven { url "https://jitpack.io" }
@@ -135,7 +157,7 @@ repositories {
 dependencies {
     compile 'com.github.ObjectLayout:ObjectLayout:-SNAPSHOT'
 
-    compile 'com.github.MicroTrader:ObjPool:-SNAPSHOT'
+    compile 'com.github.MicroTrader:ObjPool:854efb835f'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
@@ -144,5 +166,86 @@ jacocoTestReport {
     reports {
         xml.enabled true
         html.enabled = true
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+}
+
+publications {
+    ivyJava(IvyPublication) {
+        from components.java
+    }
+}
+
+bintray {
+    user = (bintray_user ?: System.getenv('BINTRAY_USER')) ?: System.getProperty('bintray.user')
+    key = (bintray_api_key ?: System.getenv('BINTRAY_KEY')) ?: System.getProperty('bintray.apikey')
+
+    publications = ['mavenJava']
+    configurations = ['archives', 'published']
+
+    dryRun = false
+    publish = true
+
+    pkg {
+        name = 'MicroTrader-JVM'
+        repo = 'MicroTrader'
+        userOrg = 'microtrader'
+
+        desc = 'Arrays for internal use'
+
+        githubRepo = repo + '/' + name
+        githubReleaseNotesFile = 'RELEASE_NOTES.md'
+        websiteUrl = 'https://github.com/' + githubRepo
+        vcsUrl = websiteUrl + '.git'
+        issueTrackerUrl = websiteUrl + '/issues'
+        licenses = ['Apache-2.0', 'AFL-3.0', 'MIT']
+        publicDownloadNumbers = true
+
+        version {
+            name = project.version
+
+            released = new Date()
+
+            vcsTag = project.version
+
+            // TODO: Update when ready to publish in maven central
+            mavenCentralSync {
+                sync = false
+                user = 'userToken'
+                password = 'paasword'
+                close = '1'
+            }
+        }
+    }
+}
+
+artifactory {
+    contextUrl = 'http://localhost:8081/artifactory'
+    publish {
+        repository {
+            if (project.version.endsWith('-SNAPSHOT'))
+                repoKey = 'libs-snapshot-local'
+            else
+                repoKey = 'libs-release-local'
+
+            username = (artifactory_user ?: System.getenv('ARTIFACTORY_USER')) ?: System.getProperty('artifactory.user')
+            password = (artifactory_password ?: System.getenv('ARTIFACTORY_PASSWORD')) ?: System.getProperty('artifactory.password')
+        }
+        defaults {
+            publishConfigs('archives', 'published')
+            publications('mavenJava', 'ivyJava')
+            publishArtifacts = true
+            publishPom = true
+        }
+    }
+    resolve {
+        repoKey = 'jcenter'
     }
 }

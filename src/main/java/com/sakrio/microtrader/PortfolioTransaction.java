@@ -2,9 +2,9 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
- * ${PROJECT_NAME}, is a collection of works and / or artifacts submitted
+ * MicroTrader, is a collection of works and / or artifacts submitted
  * and / or contributed by multiple authors ("Project Contributors"),
  * collectively creating a larger work(s) and / or artifact(s) (the / this
  * "Project"). This project is licensed under the terms of either:
@@ -45,7 +45,7 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@
  * _______________________________________________________________________________
  *
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Licensed under the Academic Free License, Version 3.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,7 +80,7 @@
  *
  * The MIT License (MIT)
  * Copyright (c) 2016. Suminda Sirinath Salpitikorala Dharmasena and
- *     Project Contributors
+ *     MicroTrader Project Contributors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
