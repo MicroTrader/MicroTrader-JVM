@@ -127,6 +127,7 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'net.saliman.cobertura' version '2.3.1'
     id 'com.jfrog.bintray' version '1.7'
     id 'com.jfrog.artifactory' version '4.4.0'
     id 'co.riiid.gradle' version '0.4.2'
@@ -186,6 +187,10 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+cobertura.coverageFormats = ['html', 'xml']
+
+cobertura.coverageSourceDirs = sourceSets.main.groovy.srcDirs
 
 jacocoTestReport {
     reports {
@@ -287,7 +292,7 @@ artifacts {
 }
 
 signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") }
+    required { gradle.taskGraph.hasTask("uploadArchives") && project.properties.containsKey('signing.keyId') }
     sign configurations.archives
 }
 
