@@ -210,6 +210,11 @@ publishing {
             from components.java
         }
     }
+    publications {
+        ivyJava(IvyPublication) {
+            from components.java
+        }
+    }
 }
 
 bintray {
@@ -239,8 +244,6 @@ bintray {
         version {
             name = project.version
 
-            released = new Date()
-
             vcsTag = 'v' + project.version
 
             // TODO: Update when ready to publish in maven central
@@ -254,6 +257,28 @@ bintray {
     }
 }
 
+artifactory {
+    publish {
+        contextUrl = 'https://oss.jfrog.info/artifactory'
+        repository {
+            if (project.version.endsWith('-SNAPSHOT'))
+                repoKey = 'oss-snapshot-local'
+            else
+                repoKey = 'oss-release-local'
+
+            username = artifactory_user
+            password = artifactory_password
+        }
+        defaults {
+            publications('mavenJava', 'ivyJava')
+        }
+    }
+}
+
+artifactoryPublish {
+    skip = false
+}
+
 artifacts {
     archives jar
 
@@ -262,12 +287,9 @@ artifacts {
 }
 
 signing {
-    required { gradle.taskGraph.hasTask("uploadArchives") || gradle.taskGraph.hasTask("bintrayUpload") }
+    required { gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
-
-ossrhUsername = (ossrhUsername ?: System.getenv('OSSRH_USER')) ?: System.getProperty('ossrh.user')
-ossrhPassword = (ossrhPassword ?: System.getenv('OSSRH_PASSWORD')) ?: System.getProperty('ossrh.password')
 
 uploadArchives {
     repositories {
@@ -333,7 +355,7 @@ uploadArchives {
 github {
     owner = project.org
     repo = project.name
-    token = github_api_key
+    token = project.github_api_key
     tagName = project.version
     targetCommitish = 'master'
     name = 'v' + project.version
