@@ -121,6 +121,9 @@ buildscript {
             cacheChangingModulesFor 0, 'seconds'
         }
     }
+    dependencies {
+        classpath "io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.5.3"
+    }
 }
 
 plugins {
@@ -137,6 +140,8 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'ivy-publish'
 apply plugin: 'signing'
+apply plugin: 'io.codearte.nexus-staging'
+
 
 defaultTasks 'clean', 'build', 'jar', 'install'
 
@@ -190,7 +195,8 @@ dependencies {
 
 cobertura.coverageFormats = ['html', 'xml']
 
-cobertura.coverageSourceDirs = sourceSets.main.groovy.srcDirs
+if (sourceSets.main.hasProperty('groovy'))
+    cobertura.coverageSourceDirs = sourceSets.main.groovy.srcDirs
 
 jacocoTestReport {
     reports {
