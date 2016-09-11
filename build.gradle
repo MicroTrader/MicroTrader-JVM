@@ -263,13 +263,13 @@ bintray {
 }
 
 artifactory {
+    contextUrl = 'https://oss.jfrog.org/artifactory'
     publish {
-        contextUrl = 'https://oss.jfrog.info/artifactory'
         repository {
             if (project.version.endsWith('-SNAPSHOT'))
-                repoKey = 'oss-snapshot-local'
+                repoKey = 'libs-snapshot' // 'oss-snapshot-local'
             else
-                repoKey = 'oss-release-local'
+                repoKey = 'libs-release' // 'oss-release-local'
 
             username = artifactory_user
             password = artifactory_password
@@ -281,7 +281,7 @@ artifactory {
 }
 
 artifactoryPublish {
-    skip = false
+    skip = !artifactory_user?.trim()
 }
 
 artifacts {
