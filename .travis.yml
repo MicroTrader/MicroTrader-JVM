@@ -22,6 +22,8 @@ script:
 
 after_success:
   - ./gradlew jacocoTestReport coveralls --stacktrace --info --debug
-  - ./gradlew cobertura coveralls --stacktrace --info --debug
+  - ./gradlew cobertura --stacktrace --info --debug
+  - ./gradlew reportScoverage --stacktrace --info --debug
+  - ./gradlew coveralls --stacktrace --info --debug
   - codecov
   - ./gradlew --stop
