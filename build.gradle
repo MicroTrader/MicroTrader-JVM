@@ -208,6 +208,8 @@ dependencies {
 
     compile "org.scala-lang:scala-library:${scalaVersionFull}"
 
+    compile "org.nd4j:nd4s_${scalaVersion}:0.6.0"
+
     compile "com.chuusai:shapeless_${scalaVersion}:2.3.2"
     compile "com.storm-enroute:reactors_${scalaVersion}:0.7-SNAPSHOT"
 
