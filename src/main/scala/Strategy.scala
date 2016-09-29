@@ -105,54 +105,16 @@
 
 package com.github.microtrader.fabric
 
-import io.reactors.container.RHashMap
-import io.reactors.{Events, RCell}
-
-
 /**
   * Created by sirinath on 21/09/2016.
   */
-class Component(private[this] final val inputs: Set[String], private[this] final val outputs: Set[String]) {
-  private[this] final val in = new RHashMap[String, Events[Double]]
-  private[this] final val out = new RHashMap[String, Events[Double]]
 
-  inputs.foreach(in.update(_, new RCell[Double](Double.NaN)))
-  outputs.foreach(out.update(_, new RCell[Double](Double.NaN)))
+sealed class Ports
 
-  object ports {
-    @inline
-    final def input(input: String): Events[Double] = in(input)
+case class ArrayPort[T](var port: Array[T]) extends Ports
 
-    @inline
-    final def output(output: String): Events[Double] = out(output)
-  }
+case class Port[T](var port: T) extends Ports
 
-  object inspect {
-    @inline
-    final def input(input: String): Double = {
-      var result: Double = Double.NaN
-      in(input).onEvent(result = _)
-      result
-    }
-
-    @inline
-    final def output(output: String): Double = {
-      var result: Double = Double.NaN
-      out(output).onEvent(result = _)
-      result
-    }
-  }
-
-  object callback {
-    @inline
-    final def input(input: String, f: Double => Unit): Unit = {
-      in(input).onEvent(f(_))
-    }
-
-    @inline
-    final def output(output: String, f: Double => Unit): Unit = {
-      out(output).onEvent(f(_))
-    }
-  }
-
+abstract class Computations(val in: Array[Ports], val out: Array[Ports]) {
+  def compute()
 }
