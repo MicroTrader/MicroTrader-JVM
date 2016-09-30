@@ -212,6 +212,7 @@ dependencies {
 
     compile "com.chuusai:shapeless_${scalaVersion}:2.3.2"
     compile "com.storm-enroute:reactors_${scalaVersion}:0.7-SNAPSHOT"
+    compile 'it.unimi.dsi:fastutil:7.0.13'
 
     testCompile "junit:junit:4.12"
     testCompile "org.scala-lang:scala-library:${scalaVersionFull}"

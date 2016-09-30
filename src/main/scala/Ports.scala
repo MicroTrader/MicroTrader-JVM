@@ -105,16 +105,62 @@
 
 package com.github.microtrader.fabric
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList
+import org.nd4j.linalg.api.ndarray.INDArray
+import org.nd4j.linalg.factory.Nd4j
+
 /**
-  * Created by sirinath on 21/09/2016.
+  * Created by sirinath on 29/09/2016.
   */
+abstract class Ports(val window: Int) {
+  protected[this] type ThisType = this.type
+  protected[this] type ElementType
+  protected[this] type ContainerType
 
-sealed class Ports
+  def :=(other: ThisType): ThisType
 
-case class ArrayPort[T](var port: Array[T]) extends Ports
+  def at(index: Int): ElementType
 
-case class Port[T](var port: T) extends Ports
+  def history: ContainerType
+}
 
-abstract class Computations(val in: Array[Ports], val out: Array[Ports]) {
-  def compute()
+class ObjectPort[T](window: Int) extends Ports(window = window) {
+  protected[this] type ElementType = T
+  protected[this] type ContainerType = ObjectArrayList[T]
+  private[this] val port: ObjectArrayList[ElementType] = new ObjectArrayList[ElementType](window)
+
+  def :=(other: ThisType): ThisType = {
+    port.add(0, other.at(0))
+
+    this
+  }
+
+  def at(index: Int): ElementType = port.get(index)
+
+  def history: ObjectArrayList[ElementType] = {
+    port.trim(window)
+    port
+  }
+}
+
+
+class NDArrayPort(window: Int, val inputs: Int) extends Ports(window = window) {
+  protected[this] type ElementType = INDArray
+  port.setWrapAround(true)
+  protected[this] type ContainerType = INDArray
+  private[this] val port = Nd4j.create(window, inputs)
+
+  def :=(other: ThisType): ThisType = {
+    for (i <- 0 to (window - 1)) {
+      port.putRow(i + 1, port.getRow(i))
+    }
+
+    port.putRow(0, other.at(0))
+
+    this
+  }
+
+  def at(index: Int): INDArray = port.getRow(index)
+
+  def history: INDArray = port
 }
