@@ -146,9 +146,10 @@ class ObjectPort[T](window: Int) extends Ports(window = window) {
 
 class NDArrayPort(window: Int, val inputs: Int) extends Ports(window = window) {
   protected[this] type ElementType = INDArray
-  port.setWrapAround(true)
   protected[this] type ContainerType = INDArray
   private[this] val port = Nd4j.create(window, inputs)
+
+  port.setWrapAround(true)
 
   def :=(other: ThisType): ThisType = {
     for (i <- 0 to (window - 1)) {
