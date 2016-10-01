@@ -111,9 +111,9 @@ package com.github.microtrader.fabric
   */
 
 object Calc {
-  def apply[@specialized A <: Ports, @specialized B <: Ports](name: String)(in: Array[A], out: Array[B]): Calc[A, B] = new Calc[A, B](name, in, out)
+  def apply[A <: Ports, B <: Ports](in: Array[A], out: Array[B]): Calc[A, B] = new Calc[A, B](in, out)
 }
 
-class Calc[@specialized A <: Ports, @specialized B <: Ports](val name: String, val in: Array[A], val out: Array[B]) {
+class Calc[A <: Ports, B <: Ports](val in: Array[A], val out: Array[B]) {
   def apply(f: (Array[A], Array[B]) => Unit): Unit = f(in, out)
 }
