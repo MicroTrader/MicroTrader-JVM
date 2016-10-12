@@ -137,7 +137,6 @@ plugins {
     id 'co.riiid.gradle' version '0.4.2'
 }
 
-apply plugin: 'scala'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'ivy-publish'
@@ -169,9 +168,6 @@ ext {
     artifactory_user = ((project.hasProperty('artifactory_user') ? artifactory_user : System.getenv('ARTIFACTORY_USER')) ?: System.getProperty('artifactory.user')) ?: ' '
     artifactory_password = ((project.hasProperty('artifactory_password') ? artifactory_password : System.getenv('ARTIFACTORY_PASSWORD')) ?: System.getProperty('artifactory.password')) ?: ' '
     github_api_key = ((project.hasProperty('github_api_key') ? github_api_key : System.getenv('GITHUB_KEY')) ?: System.getProperty('github.apikey')) ?: ' '
-
-    scalaVersion = '2.11'
-    scalaVersionFull = scalaVersion + '.8'
 }
 
 task wrapper(type: Wrapper) {
@@ -181,10 +177,6 @@ task wrapper(type: Wrapper) {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-configurations {
-    scalaCompilerPlugin
-}
 
 repositories {
     mavenLocal()
@@ -197,33 +189,11 @@ repositories {
     maven { url "https://oss.sonatype.org/content/repositories/releases" }
 }
 
-configurations.all {
-    resolutionStrategy.force "org.scala-lang:scala-library:${scalaVersionFull}"
-}
-
 dependencies {
-    zinc "com.typesafe.zinc:zinc:0.3.11"
-
-    scalaCompilerPlugin "org.scalamacros:paradise_${scalaVersionFull}:2.1.0"
-
-    compile "org.scala-lang:scala-library:${scalaVersionFull}"
-
-    compile "org.nd4j:nd4s_${scalaVersion}:0.6.0"
-
-    compile "com.chuusai:shapeless_${scalaVersion}:2.3.2"
-    compile "com.storm-enroute:reactors_${scalaVersion}:0.7-SNAPSHOT"
     compile 'it.unimi.dsi:fastutil:7.0.13'
 
     testCompile "junit:junit:4.12"
-    testCompile "org.scala-lang:scala-library:${scalaVersionFull}"
-
-    scoverage "org.scoverage:scalac-scoverage-plugin_${scalaVersion}:1.1.0", "org.scoverage:scalac-scoverage-runtime_${scalaVersion}:1.1.0"
 }
-
-ScalaCompileOptions.metaClass.daemonServer = true
-ScalaCompileOptions.metaClass.fork = true
-ScalaCompileOptions.metaClass.useAnt = false
-ScalaCompileOptions.metaClass.useCompileDaemon = false
 
 tasks.withType(ScalaCompile) {
     scalaCompileOptions.additionalParameters = [
