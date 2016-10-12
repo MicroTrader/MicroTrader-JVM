@@ -110,10 +110,22 @@ package com.github.microtrader.fabric
   * Created by sirinath on 21/09/2016.
   */
 
-object Calc {
-  def apply[A <: Ports, B <: Ports](in: Array[A], out: Array[B]): Calc[A, B] = new Calc[A, B](in, out)
+object Inputs {
+  def apply(params: Ports*): Inputs = new Inputs(params)
 }
 
-class Calc[A <: Ports, B <: Ports](val in: Array[A], val out: Array[B]) {
-  def apply(f: (Array[A], Array[B]) => Unit): Unit = f(in, out)
+case class Inputs(val params: Seq[Ports])
+
+object Outputs {
+  def apply(params: Ports*): Outputs = new Outputs(params)
+}
+
+case class Outputs(val params: Seq[Ports])
+
+object Calc {
+  def apply(name: String)(in: Inputs, out: Outputs, f: (Seq[Ports], Seq[Ports]) => Unit): Calc = new Calc(name, in.params, out.params, f)
+}
+
+class Calc(val name: String, val in: Seq[Ports], val out: Seq[Ports], val f: (Seq[Ports], Seq[Ports]) => Unit) extends Runnable {
+  override def run(): Unit = f(in, out)
 }
