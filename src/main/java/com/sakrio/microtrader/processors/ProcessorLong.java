@@ -103,10 +103,26 @@
  * _______________________________________________________________________________
  */
 
-package com.sakrio.microtrader;
+package com.sakrio.microtrader.processors;
+
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.LongConsumer;
+import java.util.function.LongSupplier;
+import java.util.function.LongUnaryOperator;
 
 /**
- * Created by sirinath on 27/08/2016.
+ * Created by sirinath on 12/10/2016.
  */
-public class PortfolioTransaction {
+public abstract class ProcessorLong implements LongConsumer, LongSupplier, LongUnaryOperator {
+    private AtomicLong value = new AtomicLong();
+
+    @Override
+    public void accept(long value) {
+        this.value.set(applyAsLong(value));
+    }
+
+    @Override
+    public long getAsLong() {
+        return this.value.get();
+    }
 }

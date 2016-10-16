@@ -103,10 +103,27 @@
  * _______________________________________________________________________________
  */
 
-package com.sakrio.microtrader;
+package com.sakrio.microtrader.processors;
+
+import it.unimi.dsi.fastutil.objects.ObjectArrayFIFOQueue;
+
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
- * Created by sirinath on 27/08/2016.
+ * Created by sirinath on 12/10/2016.
  */
-public class PortfolioTransaction {
+public abstract class Processor<C, S> implements Consumer<C>, Supplier<S>, Function<C, S> {
+    private ObjectArrayFIFOQueue<S> values = new ObjectArrayFIFOQueue<S>();
+
+    @Override
+    public void accept(C c) {
+        values.enqueue(apply(c));
+    }
+
+    @Override
+    public S get() {
+        return values.dequeue();
+    }
 }

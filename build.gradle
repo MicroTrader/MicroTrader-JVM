@@ -131,7 +131,6 @@ plugins {
     id 'jacoco'
     id 'com.github.kt3k.coveralls' version '2.6.3'
     id 'net.saliman.cobertura' version '2.3.1'
-    id 'org.scoverage' version '2.1.0'
     id 'com.jfrog.bintray' version '1.7'
     id 'com.jfrog.artifactory' version '4.4.0'
     id 'co.riiid.gradle' version '0.4.2'
@@ -190,15 +189,11 @@ repositories {
 }
 
 dependencies {
-    compile 'it.unimi.dsi:fastutil:7.0.13'
+    compile group: 'it.unimi.dsi', name: 'fastutil', version: '7.0.13'
 
-    testCompile "junit:junit:4.12"
-}
+    compile group: 'net.openhft', name: 'chronicle-engine', version: '1.13.10'
 
-tasks.withType(ScalaCompile) {
-    scalaCompileOptions.additionalParameters = [
-            "-Xplugin:" + configurations.scalaCompilerPlugin.asPath
-    ]
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 cobertura.coverageFormats = ['html', 'xml']
